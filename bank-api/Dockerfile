@@ -7,3 +7,6 @@ RUN npm i -g @nestjs/cli@7.4.1
 USER node
 
 WORKDIR /home/node/app
+
+RUN npm install
+RUN npm run start:dev

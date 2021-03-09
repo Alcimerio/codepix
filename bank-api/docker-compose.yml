@@ -4,21 +4,21 @@ services:
   app:
     build: .
     entrypoint: .docker/entrypoint.sh
-    container_name: codepix_bank_api
+    container_name: codepix-nest-bank
     ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
-    depends_on:
-      - db
-
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+  
   db:
     build: .docker/postgres
-    container_name: codepix_bank_api_db
+    container_name: codepix-nest-bank-db
     restart: always
     tty: true
     volumes:
       - .docker/dbdata:/var/lib/postgresql/data
-    environment: 
+    environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=nest
